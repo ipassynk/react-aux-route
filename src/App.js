@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Route, Redirect, Link, Switch} from 'react-router-dom';
 
-const Application = (props) => {
+const Fruit = (props) => {
   const handleClose = () => {
     props.history.push(props.basePath);
   };
@@ -10,7 +10,7 @@ const Application = (props) => {
     <div className="w3-modal" style={{display: 'block'}}>
       <div className="w3-modal-content">
         <div className="w3-container" style={{padding: 30}}>
-          <p>Details for app: {props.id}</p>
+          <p>Details for fruit: {props.name}</p>
           <p>Some text. Some text. Some text.</p>
           <button onClick={handleClose}>Close</button>
         </div>
@@ -18,20 +18,20 @@ const Application = (props) => {
 
     </div>
   );
-}
+};
 
-const Applications = (props) => {
+const Fruits = (props) => {
   const basePath = props.match.path;
   return (
     <>
-    <Route path={`${basePath}/\\(application/:id\\)`}
-           render={props => <Application id={props.match.params.id} basePath={basePath} {...props}/>}/>
+    <Route path={`${basePath}/\\(fruit/:name\\)`}
+           render={props => <Fruit name={props.match.params.id} basePath={basePath} {...props}/>}/>
 
-    <h2>Applications</h2>
+    <h3>Fruits</h3>
     <ul>
-      <li><Link to={`${basePath}/(application/app1)`}>Open app1 details</Link></li>
-      <li><Link to={`${basePath}/(application/app2)`}>Open app2 details</Link></li>
-      <li><Link to={`${basePath}/(application/app3)`}>Open app3 details</Link></li>
+      <li><Link to={`${basePath}/(fruit/apple)`}>Open apple details</Link></li>
+      <li><Link to={`${basePath}/(fruit/orange)`}>Open orange details</Link></li>
+      <li><Link to={`${basePath}/(fruit/banana)`}>Open banana details</Link></li>
     </ul>
     </>
   );
@@ -41,12 +41,10 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div style={{
-          display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"
-        }}>
+        <div style={{padding: 10}}>
           <Switch>
-            <Route path="/apps" render={props => <Applications {...props}/>}></Route>
-            <Redirect exact path="/" to="/apps"/>
+            <Route path="/fruits" render={props => <Fruits {...props}/>}></Route>
+            <Redirect exact path="/" to="/fruits"/>
           </Switch>
         </div>
       </BrowserRouter>
