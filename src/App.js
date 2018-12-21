@@ -25,7 +25,7 @@ const Fruits = (props) => {
   return (
     <>
     <Route path={`${basePath}/\\(fruit/:name\\)`}
-           render={props => <Fruit name={props.match.params.id} basePath={basePath} {...props}/>}/>
+           render={props => <Fruit name={props.match.params.name} basePath={basePath} {...props}/>}/>
 
     <h3>Fruits</h3>
     <ul>
